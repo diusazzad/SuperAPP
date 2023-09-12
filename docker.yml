@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./laravel:/var/www/html
+  laravel:
+    build: ./laravel
+    depends_on:
+      - db
+    volumes:
+      - ./laravel:/var/www/html
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - db-data:/var/lib/mysql
+  node:
+    build: ./node
+    depends_on:
+      - laravel
+    volumes:
+      - ./node:/app
+      - node_modules:/app/node_modules
+    ports:
+      - "3000:3000"
+
+volumes:
+  db-data:
+  node_modules:
