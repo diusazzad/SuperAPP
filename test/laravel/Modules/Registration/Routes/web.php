@@ -11,15 +11,6 @@
 |
 */
 
-// use Illuminate\Routing\Route;
-
-// Route::prefix('home')->group(function() {
-//     Route::get('/', 'HomeController@index');
-// });
-
-use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('welcome');
+Route::prefix('registration')->group(function() {
+    Route::get('/', 'RegistrationController@index');
 });
-

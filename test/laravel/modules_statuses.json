@@ -1,4 +1,6 @@
 {
     "Blog": true,
-    "Home": true
+    "Home": true,
+    "Login": true,
+    "Registration": true
 }
